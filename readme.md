@@ -11,5 +11,6 @@ I try to solve need of some global server side data in both server and client wi
 
 ## References
  - https://spectrum.chat/next-js/general/access-static-export-props-on-client~6a49106f-7ca5-4d82-afcb-dc48bdc2c42b
+ - https://github.com/zeit/next.js/issues/4883
 
 
