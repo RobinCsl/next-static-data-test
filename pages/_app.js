@@ -1,9 +1,10 @@
 import App from "next/app";
 
 function MyApp({ Component, pageProps, router: { query, pathname } }) {
+  const { staticProps } = (typeof window !== "undefined") ? __NEXT_DATA__.props.pageProps : pageProps
   return <>
-    Data available inside `_app.js`: {JSON.stringify(pageProps.staticProps || __NEXT_DATA__.props.staticProps)}
-    <Component {...pageProps} />
+    Data available inside `_app.js`: {JSON.stringify(staticProps)}
+    <Component {...pageProps} staticProps={staticProps} />
   </>
 }
 
@@ -12,13 +13,11 @@ function MyApp({ Component, pageProps, router: { query, pathname } }) {
 // perform automatic static optimization, causing every page in your app to
 // be server-side rendered.
 
-// Needed for access data in dynamic routing
+// MyApp.getInitialProps = async (appContext) => {
+//   // calls page's `getInitialProps` and fills `appProps.pageProps`
+//   const appProps = await App.getInitialProps(appContext);
 
-MyApp.getInitialProps = async (appContext) => {
-  // calls page's `getInitialProps` and fills `appProps.pageProps`
-  const appProps = await App.getInitialProps(appContext);
-
-  return { ...appProps }
-}
+//   return { ...appProps }
+// }
 
 export default MyApp
