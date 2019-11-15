@@ -3,15 +3,16 @@ import Link from 'next/link'
 
 function MyApp({ Component, pageProps, router: { query, pathname } }) {
   const { staticProps } = (typeof window !== "undefined") ? __NEXT_DATA__.props.pageProps : pageProps
+  console.log({query})
   return <>
-    Data available inside `_app.js`: {JSON.stringify(staticProps)}
+    {/* Data available inside `_app.js`: {JSON.stringify(staticProps)} */}
     <Component {...pageProps} staticProps={staticProps} />
     <hr />
     Next's link:{" "}
     <Link href="/"><a>Home</a></Link>
-    {` | `}<Link href="/[no]" as="/1"><a>1</a></Link>
-    {` | `}<Link href="/[no]" as="/2"><a>2</a></Link>
-    {` | `}<Link href="/[no]" as="/42"><a>42</a></Link>
+    {` | `}<Link href="/[lang]/[no]" as="/fr/1"><a>fr/1</a></Link>
+    {` | `}<Link href="/[lang]/[no]" as="/en/2"><a>en/2</a></Link>
+    {` | `}<Link href="/[lang]/[no]" as="/fr/42"><a>fr/42</a></Link>
   </>
 }
 

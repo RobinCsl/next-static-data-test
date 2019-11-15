@@ -3,10 +3,13 @@ import Document, { Html, Head, Main, NextScript } from "next/document"
 
 export default class KiwiDocument extends Document {
   static async getInitialProps(ctx) {
-
     // You can read static data from filesystem for example
     const staticProps = {
       now: Date.now(),
+      languages: {
+        fr: require("../data/fr.json"),
+        en: require("../data/en.json"),
+      }
     }
 
     const originalRenderPage = ctx.renderPage
@@ -33,7 +36,7 @@ export default class KiwiDocument extends Document {
         <body>
           <Main />
           <hr />
-          Data available on document level: {JSON.stringify(this.props.staticProps)}
+          {/* Data available on document level: {JSON.stringify(this.props.staticProps)} */}
           <NextScript />
         </body>
       </Html>

@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router'
-import Counter from "../components/counter"
 
 // https://github.com/zeit/next.js/#automatic-static-optimization
 // If getInitialProps is absent, Next.js will statically optimize your page automatically by prerendering it to static HTML.
@@ -9,14 +8,14 @@ import Counter from "../components/counter"
 const CounterPage = (props) => {
   const { staticProps } = (typeof window !== "undefined") ? __NEXT_DATA__.props.pageProps : props
 
-  const {query: { no }} = useRouter()
+  const {query: { lang }} = useRouter()
 
   return (<div>
-    <h2>{no}</h2>
+    <h2>{lang}</h2>
     <pre>
-      data in [no] page: {JSON.stringify(staticProps)}
+      data in [lang] page: {JSON.stringify(staticProps.languages[lang])}
     </pre>
-    {no && <Counter init={Number(no)} />}
+    {lang}
   </div>
   )
 }
